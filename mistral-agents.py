@@ -1,16 +1,15 @@
-from crewai import Agent, Task, Crew
+from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 import os
 
 
-
-os.environ["OPENAI_API_KEY"] = "NA"
-
+# Retrieve the API key from the environment and configure the local model
+api_key = os.getenv("OPENAI_API_KEY")
 llm = ChatOpenAI(
-
-    model = "mistralcrew",
-
-    base_url = "http://localhost:11434/v1")
+    model="mistralcrew",
+    base_url="http://localhost:11434/v1",
+    api_key=api_key,
+)
 
 
 #agent1 researcher
@@ -61,10 +60,10 @@ task2 = Task(
 crew = Crew(
   agents=[researcher, writer],
   tasks=[task1, task2],
-  verbose=2, 
+  process=Process.sequential,
+  verbose=2,
 )
 
-
-result = crew.kickoff()
-
-print(result)
+if __name__ == "__main__":
+    result = crew.kickoff()
+    print(result)
