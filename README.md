@@ -7,16 +7,28 @@ This repository is an example of a local setup for using agentic workflow using 
 ## Running The Agents
 This project uses an OpenAI-compatible API key. Store the key in a `.env` file or as an environment variable.
 
-1. Set up a virtual environment using the `pyvenv.cfg` setting.
-2. Install dependencies with `pip install -r requirements.txt`.
-3. Create a `.env` file in this directory and define `OPENAI_API_KEY` along with any other settings like the Ollama endpoint. The requirements include `python-dotenv` so the agents can read the `.env` file automatically.
+1. Create a virtual environment in the project root (a sample `pyvenv.cfg` is included):
 
-```
-OPENAI_API_KEY=your_key_here
-```
-4. Create a Model File to specify the base LLM and set the PARAMETERs and the SYSTEM message to shape the behaviour of the LLM.
-5. Create a shell file to pull the information from the Model File and then execute it via your terminal.
-6. Make the necessary changes to the Python file based on your project goals, then run it.
+   ```bash
+   python3 -m venv .venv
+   ```
+2. Activate the environment before continuing:
+
+   ```bash
+   source .venv/bin/activate  # macOS/Linux
+   .\.venv\Scripts\activate  # Windows
+   ```
+3. Install dependencies with `pip install -r requirements.txt`.
+4. Create a `.env` file in this directory and define `OPENAI_API_KEY` along with any other settings like the Ollama endpoint. The requirements include `python-dotenv` so the agents can read the `.env` file automatically.
+
+   ```
+   OPENAI_API_KEY=your_key_here
+   ```
+5. Create a Model File to specify the base LLM and set the PARAMETERs and the SYSTEM message to shape the behaviour of the LLM.
+6. Create a shell file to pull the information from the Model File and then execute it via your terminal.
+7. Make the necessary changes to the Python file based on your project goals, then run it.
+
+Always activate the virtual environment before launching agents or building the model.
 
 ## Additional Explanation and the Main Features
 This is a simple setup project that employs only two agents, each performing one task. You may set as many refiners as you need. You can also enhance the quality of the responses by setting `allow delegation` to `True` to allow agents to solve more complex problems using a chain of internal enquiries. This project uses a `sequential` task execution but you can set up a `hierarchical` one.
