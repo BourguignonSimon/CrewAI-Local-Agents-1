@@ -1,9 +1,11 @@
-#set the variables
-model_name="mistral"
-custom_model_name="mistralcrew"
+#!/usr/bin/env bash
+set -euo pipefail
 
-#pull mistral from ModelFile
-ollama pull $model_name
+MODEL_NAME="${1:-mistral-crew}"
 
-#create a new model based on mistral
-ollama create $custom_model_name -f ./mistral-crew-ModelFile
+if ! command -v ollama >/dev/null 2>&1; then
+  echo "ollama is not installed or not in PATH" >&2
+  exit 1
+fi
+
+ollama create "$MODEL_NAME" -f mistral-crew-ModelFile
