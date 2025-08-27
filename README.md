@@ -5,10 +5,14 @@ This repository is an example of a local setup for using agentic workflow using 
 
 
 ## Running The Agents
-This project uses a free API formality key from OpenAI, but you can replace it with your paid API key from other providers.
+This project uses an OpenAI-compatible API key. Store the key in a `.env` file or as an environment variable.
 
 1. Set up a virtual environment using the `pyvenv.cfg` setting.
-2. Configure your environment using the `dotenv` or `.env` file in your bin directory with Ollama endpoints and your choice of the large language model.
+2. Create a `.env` file in this directory and define `OPENAI_API_KEY` along with any other settings like the Ollama endpoint. Optionally install `python-dotenv` so the agents can read the `.env` file automatically.
+
+```
+OPENAI_API_KEY=your_key_here
+```
 3. Create a Model File to specify the base LLM and set the PARAMETERs and the SYSTEM message to shape the behaviour of the LLM.
 4. Create a shell file to pull the information from the Model File and then execute it via your terminal.
 5. Make the necessary changes to the Python file based on your project goals, then run it.
