@@ -1,9 +1,13 @@
 from crewai import Agent, Task, Crew, Process
 from langchain_openai import ChatOpenAI
 import os
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-
-# Retrieve the API key from the environment and configure the local model
+# Optionally load environment variables from a .env file and configure the local model
 api_key = os.getenv("OPENAI_API_KEY")
 llm = ChatOpenAI(
     model="mistralcrew",
